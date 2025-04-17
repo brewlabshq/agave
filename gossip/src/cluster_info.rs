@@ -2184,7 +2184,7 @@ impl ClusterInfo {
     }
 
     /// Process messages from the network
-    fn run_listen(
+    pub fn run_listen(
         &self,
         recycler: &PacketBatchRecycler,
         mut epoch_specs: Option<&mut EpochSpecs>,
@@ -2267,7 +2267,7 @@ impl ClusterInfo {
         Builder::new().name(thread_name).spawn(run_consume).unwrap()
     }
 
-    pub(crate) fn listen(
+    pub fn listen(
         self: Arc<Self>,
         bank_forks: Option<Arc<RwLock<BankForks>>>,
         requests_receiver: Receiver<Vec<(/*from:*/ SocketAddr, Protocol)>>,
